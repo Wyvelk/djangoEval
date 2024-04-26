@@ -1,19 +1,22 @@
+<!-- master.html -->
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DND Betting Website{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 
 <body>
     <header>
-        <h1>This is a DND betting website</h1>
+        <h1>Welcome to the DND Betting Website</h1>
     </header>
     <nav>
         <a href="{% url 'authView' %}">Login</a>
-        <a href="#">Règles</a>
+        <a href="#">Rules</a>
     </nav>
     <div class="container">
         {% block content %}

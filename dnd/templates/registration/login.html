@@ -1,14 +1,14 @@
+<!-- login.html -->
 {% extends "master.html" %}
 
 {% block title %}
-login
+Login
 {% endblock %}
 
 {% block content %}
 <form method="POST">
     {% csrf_token %}
     {{form}}
-    <button type="submit">submit</button>
+    <button type="submit" class="submit-btn">Submit</button>
 </form>
-
 {% endblock %}

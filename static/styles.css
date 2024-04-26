@@ -1,127 +1,112 @@
-/* Reset default browser styles */
-body,
-html,
-h1,
-h2,
-p,
-ul,
-li,
-form,
-button {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Body styling */
+/* General Styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9fafb; /* Light gray background */
-  color: #333;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
 }
 
-/* Header styling */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 header {
-  background: linear-gradient(
-    135deg,
-    #3f51b5,
-    #2196f3
-  ); /* Gradient background */
+  background-color: #3f51b5;
   color: #fff;
   padding: 20px;
   text-align: center;
 }
 
-header h1 {
-  font-size: 32px; /* Slightly larger font size */
-  margin: 0; /* Remove margin from the h1 */
-}
-
-/* Navigation styling */
 nav {
-  background: linear-gradient(
-    135deg,
-    #2196f3,
-    #3f51b5
-  ); /* Gradient background */
-  padding: 10px 0;
+  background-color: #2196f3;
+  color: #fff;
+  padding: 10px 20px;
   text-align: center;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
-  margin: 0 15px; /* Increased margin */
+  margin: 0 10px;
 }
 
-/* Main content styling */
-.container {
-  max-width: 900px; /* Wider container */
-  margin: 30px auto; /* Increased margin */
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 12px; /* Rounder corners */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+nav a:hover {
+  text-decoration: underline;
 }
 
-/* Form styling */
+/* Forms */
 form {
-  margin-top: 20px;
-}
-
-form label {
-  display: block;
-  margin-bottom: 10px; /* Increased margin */
-}
-
-form input[type="text"],
-form input[type="password"],
-form input[type="email"],
-form select,
-form textarea {
-  width: 100%;
-  padding: 12px; /* Increased padding */
-  margin-bottom: 15px; /* Increased margin */
-  border: 1px solid #ccc;
-  border-radius: 6px; /* Rounder corners */
-}
-
-form button {
-  background: linear-gradient(
-    135deg,
-    #3f51b5,
-    #2196f3
-  ); /* Gradient background */
-  color: #fff;
-  border: none;
-  padding: 12px 24px; /* Increased padding */
-  cursor: pointer;
-  border-radius: 6px; /* Rounder corners */
-}
-
-form button:hover {
-  background: linear-gradient(
-    135deg,
-    #2196f3,
-    #3f51b5
-  ); /* Gradient background */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Add spacing between forms */
 }
 
 form .helptext {
-  display: none;
+  display: none; /* Hide help text */
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-  .container {
-    padding: 20px; /* Increased padding */
-  }
+form label {
+  margin-bottom: 10px; /* Add spacing below labels */
+  display: block;
+}
 
-  form input[type="text"],
-  form input[type="password"],
-  form input[type="email"],
-  form select,
-  form textarea {
-    width: calc(100% - 24px); /* Adjusted width */
-  }
+form input[type="text"],
+form input[type="email"],
+form input[type="number"],
+form input[type="password"],
+form select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 15px; /* Add spacing between input fields */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.ability-score {
+  width: 10% !important; /* Match width of ability inputs */
+  margin-right: 0; /* Remove margin between ability inputs */
+  margin-bottom: 15px; /* Add spacing between ability inputs */
+}
+
+.ability-scores {
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.ability-score label {
+  display: block;
+  margin-bottom: 5px;
+  width: fit-content;
+}
+
+.ability-score input {
+  width: calc(100% - 10px);
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.submit-btn {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
 }
