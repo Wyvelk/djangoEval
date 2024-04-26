@@ -20,6 +20,26 @@ header {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
+@keyframes wavy {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+h1 span {
+  display: inline-block;
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 1.5;
+  letter-spacing: -4px; /* Adjust as needed */
+}
+
 nav {
   background-color: #800000;
   color: #fff;
