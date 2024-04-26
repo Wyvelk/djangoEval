@@ -6,6 +6,7 @@ from django.template import loader
 from django.contrib.auth.models import User
 from .models import Skill, DiceRoll
 from django.http import JsonResponse
+from django.contrib.auth import logout
 import random
 
 # Create your views here.
@@ -54,3 +55,13 @@ def roll_dice(request):
     result.save()
 
     return JsonResponse({'dice_roll': dice_roll, 'skill': skill, 'win': win})
+
+def ranking(request):
+    users = User.objects.all()
+    skills = Skill.objects.all()
+    dice_rolls = DiceRoll.objects.all()
+    return render(request, 'ranking.html', {'users': users, 'skills': skills, 'dice_rolls': dice_rolls})
+
+def Logout(request):
+    logout(request)
+    return redirect('login')

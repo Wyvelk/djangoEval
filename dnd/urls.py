@@ -7,5 +7,6 @@ urlpatterns = [
     path("signup/", views.authView, name="authView"),
     path("dice/", views.dice, name="dice"),
     path('roll_dice/', views.roll_dice, name='roll_dice'),
-
+    path('ranking/', views.ranking, name='ranking'),
+    path('logout/', views.Logout, name='custom_logout')
 ]
