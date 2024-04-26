@@ -20,3 +20,15 @@ skillInputs.forEach(input => {
         pointRestant.textContent = MAX_POINTS - totalPoints;
     });
 });
+
+$('#roll-dice-button').click(function() {
+    $.ajax({
+        url: '/roll_dice',
+        type: 'GET',
+        success: function(data) {
+            console.log(data);
+            $('#dice-roll-result').text(data.dice_roll);
+            $('#dice-roll-skill').text(data.skill);
+        }
+    });
+});

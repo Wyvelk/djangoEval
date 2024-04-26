@@ -5,8 +5,8 @@ from django.shortcuts import redirect
 from django.template import loader
 from django.contrib.auth.models import User
 from .models import Skill
-
-
+from django.http import JsonResponse
+import random
 
 # Create your views here.
 def home(request):
@@ -32,3 +32,17 @@ def authView(request):
     else:
         form = UserCreationForm()
         return render(request, 'registration/signup.html', {'form': form})
+
+def dice(request):
+    return render(request, 'dice.html')
+
+def roll_dice(request):
+    skills = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma']
+
+    dice_roll = random.randint(1, 20)
+
+    skill = random.choice(skills)
+
+    # Enregistrer le résultat dans la bdd
+
+    return JsonResponse({'dice_roll': dice_roll, 'skill': skill})
