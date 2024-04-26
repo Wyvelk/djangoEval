@@ -16,8 +16,11 @@
     </header>
     <nav>
         <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'authView' %}">Login</a>
+        <a href="{% url 'authView' %}">Signup</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'custom_logout' %}">Logout</a>
         <a href="{% url 'dice' %}">Lancer des dés</a>
+        <a href="{% url 'ranking' %}">Classement</a>
         <a href="#">Rules</a>
     </nav>
     <div class="container">

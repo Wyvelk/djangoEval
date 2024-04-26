@@ -3,8 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from django.template import loader
-from django.contrib.auth.models import User
-from .models import Skill, DiceRoll
+from .models import Skill, DiceRoll, UserService
 from django.http import JsonResponse
 from django.contrib.auth import logout
 import random
@@ -62,10 +61,9 @@ def roll_dice(request):
 
 @login_required
 def ranking(request):
-    users = User.objects.all()
-    skills = Skill.objects.all()
-    dice_rolls = DiceRoll.objects.all()
-    return render(request, 'ranking.html', {'users': users, 'skills': skills, 'dice_rolls': dice_rolls})
+    users = UserService.get_all_users_with_rolls_and_skills()
+    print(users)
+    return render(request, 'ranking.html', {'users': users})
 
 @login_required
 def Logout(request):
