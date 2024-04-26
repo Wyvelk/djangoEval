@@ -1,0 +1,127 @@
+/* Reset default browser styles */
+body,
+html,
+h1,
+h2,
+p,
+ul,
+li,
+form,
+button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9fafb; /* Light gray background */
+  color: #333;
+}
+
+/* Header styling */
+header {
+  background: linear-gradient(
+    135deg,
+    #3f51b5,
+    #2196f3
+  ); /* Gradient background */
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 32px; /* Slightly larger font size */
+  margin: 0; /* Remove margin from the h1 */
+}
+
+/* Navigation styling */
+nav {
+  background: linear-gradient(
+    135deg,
+    #2196f3,
+    #3f51b5
+  ); /* Gradient background */
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px; /* Increased margin */
+}
+
+/* Main content styling */
+.container {
+  max-width: 900px; /* Wider container */
+  margin: 30px auto; /* Increased margin */
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px; /* Rounder corners */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+}
+
+/* Form styling */
+form {
+  margin-top: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px; /* Increased margin */
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 12px; /* Increased padding */
+  margin-bottom: 15px; /* Increased margin */
+  border: 1px solid #ccc;
+  border-radius: 6px; /* Rounder corners */
+}
+
+form button {
+  background: linear-gradient(
+    135deg,
+    #3f51b5,
+    #2196f3
+  ); /* Gradient background */
+  color: #fff;
+  border: none;
+  padding: 12px 24px; /* Increased padding */
+  cursor: pointer;
+  border-radius: 6px; /* Rounder corners */
+}
+
+form button:hover {
+  background: linear-gradient(
+    135deg,
+    #2196f3,
+    #3f51b5
+  ); /* Gradient background */
+}
+
+form .helptext {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 20px; /* Increased padding */
+  }
+
+  form input[type="text"],
+  form input[type="password"],
+  form input[type="email"],
+  form select,
+  form textarea {
+    width: calc(100% - 24px); /* Adjusted width */
+  }
+}
