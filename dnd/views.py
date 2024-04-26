@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from django.template import loader
 from django.contrib.auth.models import User
-from .models import Skill
+from .models import Skill, DiceRoll
 from django.http import JsonResponse
 import random
 
@@ -43,6 +43,14 @@ def roll_dice(request):
 
     skill = random.choice(skills)
 
-    # Enregistrer le résultat dans la bdd
+    win = dice_roll <= getattr(Skill.objects.get(user=request.user), skill)
 
-    return JsonResponse({'dice_roll': dice_roll, 'skill': skill})
+    result = DiceRoll(
+        user=request.user,
+        skill=skill,
+        dice_roll=dice_roll,
+        win=win
+    )
+    result.save()
+
+    return JsonResponse({'dice_roll': dice_roll, 'skill': skill, 'win': win})

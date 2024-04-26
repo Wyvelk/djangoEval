@@ -26,9 +26,10 @@ $('#roll-dice-button').click(function() {
         url: '/roll_dice',
         type: 'GET',
         success: function(data) {
-            console.log(data);
+            console.log(data.win);
             $('#dice-roll-result').text(data.dice_roll);
             $('#dice-roll-skill').text(data.skill);
+            data.win ? $('#result').text('gagné') : $('#result').text('perdu');
         }
     });
 });
