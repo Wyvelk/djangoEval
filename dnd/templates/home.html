@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends "master.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DND</title>
+{% block title %}
+Home
+{% endblock %}
 
-</head>
-
-<body>
-    <header>
-        <h1>this is a dnd website</h1>
-    </header>
-    <nav>
-        <a href="{% url 'authView' %}">Login</a>
-        <a href="#">Règles</a>
-    </nav>
-
-
-</body>
-
-</html>
+{% block content %}
+<h2>Home</h2>
+<!-- Your home page content here -->
+{% endblock %}
