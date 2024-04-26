@@ -130,3 +130,12 @@ form select {
 .card {
   text-align: center;
 }
+
+.card table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.card td {
+  width: 33%;
+}
