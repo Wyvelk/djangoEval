@@ -2,7 +2,7 @@ console.log('salut')
 
 const MAX_POINTS = 75;
 
-const skillInputs = document.querySelectorAll('.inputSkills');
+const skillInputs = document.querySelectorAll('.ability-input');
 const pointRestant = document.getElementById('pointRestant');
 
 skillInputs.forEach(input => {
