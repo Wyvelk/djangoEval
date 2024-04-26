@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #333;
+  background-image: url("img/497449.jpg");
   color: #fff;
   margin: 0;
   padding: 0;
@@ -26,7 +26,7 @@ header {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
   }
 }
 
@@ -124,7 +124,8 @@ form select {
 }
 
 .submit-btn,
-#roll-dice-button {
+#roll-dice-button,
+.btn {
   background-color: #a32020;
   color: #fff;
   border: none;
@@ -140,14 +141,19 @@ form select {
 }
 
 .submit-btn:hover,
-#roll-dice-button:hover {
+#roll-dice-button:hover,
+.btn:hover {
   background-color: #cc3333;
   transition: 0.3s;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.6),
     inset 0 -2px 4px rgba(255, 255, 255, 0.3);
 }
 
-.card {
+.center {
+  text-align: center;
+}
+
+.card h2 {
   text-align: center;
 }
 
@@ -158,4 +164,20 @@ form select {
 
 .card td {
   width: 33%;
+}
+
+.card a {
+  display: inline-block;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  text-decoration: none;
+}
+
+.card > div {
+  margin-bottom: 3rem;
+}
+
+.card > div:last-of-type {
+  margin-bottom: 0;
 }
