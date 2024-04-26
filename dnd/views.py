@@ -8,8 +8,10 @@ from .models import Skill, DiceRoll
 from django.http import JsonResponse
 from django.contrib.auth import logout
 import random
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def home(request):
     template = loader.get_template('home.html')
     return HttpResponse(template.render())
@@ -34,9 +36,11 @@ def authView(request):
         form = UserCreationForm()
         return render(request, 'registration/signup.html', {'form': form})
 
+@login_required
 def dice(request):
     return render(request, 'dice.html')
 
+@login_required
 def roll_dice(request):
     skills = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma']
 
@@ -56,12 +60,14 @@ def roll_dice(request):
 
     return JsonResponse({'dice_roll': dice_roll, 'skill': skill, 'win': win})
 
+@login_required
 def ranking(request):
     users = User.objects.all()
     skills = Skill.objects.all()
     dice_rolls = DiceRoll.objects.all()
     return render(request, 'ranking.html', {'users': users, 'skills': skills, 'dice_rolls': dice_rolls})
 
+@login_required
 def Logout(request):
     logout(request)
     return redirect('login')
