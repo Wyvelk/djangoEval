@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from django.template import loader
+from django.contrib.auth.models import User
+from .models import Skill
+
 
 
 # Create your views here.
@@ -14,7 +17,17 @@ def authView(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            skill = Skill(
+                user=user,
+                strength=request.POST['strength'],
+                dexterity=request.POST['dexterity'],
+                constitution=request.POST['constitution'],
+                intelligence=request.POST['intelligence'],
+                wisdom=request.POST['wisdom'],
+                charisma=request.POST['charisma']
+            )
+            skill.save()  # Sauvegardez les compétences dans la base de données
             return redirect('login')
     else:
         form = UserCreationForm()
