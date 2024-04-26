@@ -39,7 +39,8 @@ nav a:hover {
 }
 
 /* Forms */
-form {
+form,
+.card {
   background-color: #444;
   color: #fff;
   padding: 20px;
@@ -124,4 +125,8 @@ form select {
   transition: 0.3s;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.6),
     inset 0 -2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.card {
+  text-align: center;
 }
