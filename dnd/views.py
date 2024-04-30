@@ -3,13 +3,12 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from django.template import loader
-from .models import Skill, DiceRoll, UserService
+from .models import Skill, DiceRoll, UserService, Wallet
 from django.http import JsonResponse
 from django.contrib.auth import logout
 import random
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 @login_required
 def home(request):
     template = loader.get_template('home.html')
@@ -29,7 +28,12 @@ def authView(request):
                 wisdom=request.POST['wisdom'],
                 charisma=request.POST['charisma']
             )
-            skill.save()  # Sauvegardez les compétences dans la base de données
+            skill.save()
+            wallet = Wallet(
+                user=user,
+                gold=100
+            )
+            wallet.save()
             return redirect('login')
     else:
         form = UserCreationForm()
@@ -57,11 +61,19 @@ def roll_dice(request):
     )
     result.save()
 
+    if(win):
+        wallet = Wallet.objects.get(user=request.user)
+        wallet.gold += 10
+    else:
+        wallet = Wallet.objects.get(user=request.user)
+        wallet.gold -= 10
+    wallet.save()
+
     return JsonResponse({'dice_roll': dice_roll, 'skill': skill, 'win': win})
 
 @login_required
 def ranking(request):
-    users = UserService.get_all_users_with_rolls_and_skills()
+    users = UserService.get_all_users_with_rolls_skills_and_wallets()
     print(users)
     return render(request, 'ranking.html', {'users': users})
 

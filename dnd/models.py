@@ -23,15 +23,22 @@ class DiceRoll(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Wallet(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    gold = models.IntegerField()
+
+    def __str__(self):
+        return self.user.username
     
 class UserService:
     @staticmethod
-    def get_all_users_with_rolls_and_skills():
-        users_with_rolls_and_skills = {}
-        for user in User.objects.prefetch_related('diceroll_set', 'skill').all():
+    def get_all_users_with_rolls_skills_and_wallets():
+        users_with_rolls_skills_and_wallets = {}
+        for user in User.objects.prefetch_related('diceroll_set', 'skill', 'wallet').order_by('wallet__gold').all():
             wins = user.diceroll_set.filter(win=True).count()
             lose = user.diceroll_set.filter(win=False).count()
-            users_with_rolls_and_skills[user.username] = {
+            users_with_rolls_skills_and_wallets[user.username] = {
                 'wins': wins,
                 'lose': lose,
                 'skills': {
@@ -42,5 +49,6 @@ class UserService:
                     'wisdom': user.skill.wisdom,
                     'charisma': user.skill.charisma,
                 },
+                'wallet': user.wallet.gold,
             }
-        return users_with_rolls_and_skills
+        return users_with_rolls_skills_and_wallets
