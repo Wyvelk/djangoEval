@@ -11,8 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    template = loader.get_template('home.html')
-    return HttpResponse(template.render())
+    return render(request, 'home.html', {'user': request.user})
 
 def authView(request):
     if request.method == "POST":
@@ -46,12 +45,22 @@ def dice(request):
 @login_required
 def roll_dice(request):
     skills = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma']
+    
+    end = False
+
+    request.session['round'] += 1
 
     dice_roll = random.randint(1, 20)
 
+    dice_target = random.randint(1, 20)
+
     skill = random.choice(skills)
 
-    win = dice_roll <= getattr(Skill.objects.get(user=request.user), skill)
+    userSkill = getattr(Skill.objects.get(user=request.user), skill)
+
+    modificateur = (userSkill - 10) // 2
+
+    win = dice_roll + modificateur >= dice_target
 
     result = DiceRoll(
         user=request.user,
@@ -69,15 +78,41 @@ def roll_dice(request):
         wallet.gold -= 10
     wallet.save()
 
-    return JsonResponse({'dice_roll': dice_roll, 'skill': skill, 'win': win})
+    if(request.session['round'] == 3 or request.session['life'] <= 0):
+        end = True
+
+    return JsonResponse({'end': end, 'dice_roll': dice_roll, 'skill': skill, 'win': win, 'dice_target': dice_target, 'modificateur': modificateur})
 
 @login_required
 def ranking(request):
     users = UserService.get_all_users_with_rolls_skills_and_wallets()
-    print(users)
     return render(request, 'ranking.html', {'users': users})
 
 @login_required
 def Logout(request):
     logout(request)
     return redirect('login')
+
+@login_required
+def startAdventure(request):
+    if request.method == "POST":
+        difficulty = request.POST['adventure']
+        request.session['round'] = 0
+        if difficulty == "easy":
+            request.session['life'] = 3
+            request.session['difficulty'] = 'easy'
+        elif difficulty == "medium":
+            request.session['life'] = 2
+            request.session['difficulty'] = 'medium'
+        elif difficulty == "hard":
+            request.session['life'] = 1
+            request.session['difficulty'] = 'hard'
+        return redirect('adventure')
+    return render(request, 'startAdventure.html')
+
+@login_required
+def adventure(request):
+    userSkills = Skill.objects.get(user=request.user)
+    if request.method == "POST":
+        return render(request, 'startAdventure.html', {'life': request.session['life']})
+    return render(request, 'adventure.html', {'life': request.session['life'], 'difficulty': request.session['difficulty'], 'userSkills': userSkills})

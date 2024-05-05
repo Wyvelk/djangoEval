@@ -181,3 +181,14 @@ form select {
 .card > div:last-of-type {
   margin-bottom: 0;
 }
+
+.adventure{
+  #skill{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
+  #result{
+    display: flex;
+  }
+}

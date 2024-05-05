@@ -53,11 +53,16 @@
     </header>
     <nav>
         <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'authView' %}">Signup</a>
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'custom_logout' %}">Logout</a>
-        <a href="{% url 'dice' %}">Lancer des dés</a>
-        <a href="{% url 'ranking' %}">Classement</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'custom_logout' %}">Logout</a>
+            <a href="{% url 'dice' %}">Lancer des dés</a>
+            <a href="{% url 'startAdventure' %}">Partir à l'aventure</a>
+            <a href="{% url 'ranking' %}">Classement</a>
+        {% else %}
+  
+            <a href="{% url 'authView' %}">Signup</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
         <a href="#">Rules</a>
     </nav>
     <div class="container">
@@ -67,6 +72,10 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="{% static 'main.js' %}"></script>
+
+    {% block scripts %}
+    {% endblock %}
+
 </body>
 
 </html>

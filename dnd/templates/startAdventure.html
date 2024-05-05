@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block title %}
+Start Adventure
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Partir à l'aventure</h2>
+    <form action="#" method="post">
+        {% csrf_token %}
+        <label for="adventure">Choisissez la difficulté de votre aventure :</label>
+        <select name="adventure" id="adventure">
+            <option value="easy">Facile</option>
+            <option value="medium">Moyen</option>
+            <option value="hard">Difficile</option>
+        </select>
+        <button type="submit">Commencer</button>
+    </form>
+</div>
+
+{% endblock %}
