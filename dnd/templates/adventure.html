@@ -12,27 +12,27 @@ Adventure
 
     <div class="skills">
         <div class="skill">
-            <span class="skill-name">F</span>
+            <span class="skill-name">FOR</span>
             <span class="skill-value">{{ userSkills.strength }}</span>
         </div>
         <div class="skill">
-            <span class="skill-name">D</span>
+            <span class="skill-name">DEX</span>
             <span class="skill-value">{{ userSkills.dexterity }}</span>
         </div>
         <div class="skill">
-            <span class="skill-name">C</span>
+            <span class="skill-name">CON</span>
             <span class="skill-value">{{ userSkills.constitution }}</span>
         </div>
         <div class="skill">
-            <span class="skill-name">I</span>
+            <span class="skill-name">INT</span>
             <span class="skill-value">{{ userSkills.intelligence }}</span>
         </div>
         <div class="skill">
-            <span class="skill-name">S</span>
+            <span class="skill-name">SAG</span>
             <span class="skill-value">{{ userSkills.wisdom }}</span>
         </div>
         <div class="skill">
-            <span class="skill-name">Ch</span>
+            <span class="skill-name">CHA</span>
             <span class="skill-value">{{ userSkills.charisma }}</span>
         </div>
     </div>
@@ -129,11 +129,11 @@ Adventure
         interval_id = [None]
 
         def change_dice_roll():
-            document["dice_roll"].text = f"Tu dois faire mieux que : {window.Math.floor(window.Math.random() * 20) + 1}"
+            document["dice_roll"].text = f"Vous devez faire mieux que : {window.Math.floor(window.Math.random() * 20) + 1}"
 
         def stop_changing_dice_roll():
             window.clearInterval(interval_id[0])
-            document["dice_roll"].text = f"Tu dois faire mieux que : {result['dice_target']}"
+            document["dice_roll"].text = f"Vous devez faire mieux que : {result['dice_target']}"
 
         def stop_changing_skill():
             window.clearInterval(interval_id[0])
