@@ -191,4 +191,41 @@ form select {
   #result{
     display: flex;
   }
+  #life{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    margin: 0;
+    li{
+      margin: 0 10px;
+    }
+  }
+}
+.skills {
+  margin: 2rem 0;
+}
+
+.skills h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.skills ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skills li {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.skills li strong {
+  font-weight: bold;
+  margin-right: 0.5rem;
 }

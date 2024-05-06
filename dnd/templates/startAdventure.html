@@ -9,14 +9,52 @@ Start Adventure
     <h2>Partir à l'aventure</h2>
     <form action="#" method="post">
         {% csrf_token %}
+        <p id="wallet">Vous avez : {{wallet.gold}} gold</p>
+        <label for="bet">Misez votre argent :</label>
+        <input type="number" name="bet" id="bet" required>
+
         <label for="adventure">Choisissez la difficulté de votre aventure :</label>
-        <select name="adventure" id="adventure">
-            <option value="easy">Facile</option>
-            <option value="medium">Moyen</option>
-            <option value="hard">Difficile</option>
+        <select name="adventure" id="adventure" required>
+            <option value="easy">Facile(x1.5)</option>
+            <option value="medium">Moyen(x2)</option>
+            <option value="hard">Difficile(x2.5)</option>
         </select>
-        <button type="submit">Commencer</button>
+
+        <p id="potentialGain">Gain potentiel : </p>
+        <button id="submit" type="submit">Commencer</button>
     </form>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<script type="text/python">
+    from browser import document, window, ajax, console, bind
+
+    def changePotentialGain(event):
+        bet = document["bet"].value
+        if(bet == ""):
+            document["potentialGain"].text = "Gain potentiel :"
+            return
+        gold = {{wallet.gold}}
+        bet = float(bet)
+        if(bet > gold):
+            document["potentialGain"].text = "Vous n'avez pas assez d'argent"
+            document["submit"].disabled = True;
+            return
+        document["submit"].disabled = False;
+        adventure = document["adventure"].value
+        potentialGain = 0
+        if adventure == "easy":
+            potentialGain = bet * 1.5
+        elif adventure == "medium":
+            potentialGain = bet * 2.0
+        elif adventure == "hard":
+            potentialGain = bet * 2.5
+        document["potentialGain"].text = f"Gain potentiel : {potentialGain}"
+
+    document["bet"].bind("input", changePotentialGain)
+    document["adventure"].bind("input", changePotentialGain)
+
+</script>
 {% endblock %}

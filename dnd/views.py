@@ -62,14 +62,6 @@ def roll_dice(request):
 
     win = dice_roll + modificateur >= dice_target
 
-    result = DiceRoll(
-        user=request.user,
-        skill=skill,
-        dice_roll=dice_roll,
-        win=win
-    )
-    result.save()
-
     if(win):
         wallet = Wallet.objects.get(user=request.user)
         wallet.gold += 10
@@ -95,24 +87,47 @@ def Logout(request):
 
 @login_required
 def startAdventure(request):
+    wallet = Wallet.objects.get(user=request.user)
     if request.method == "POST":
         difficulty = request.POST['adventure']
         request.session['round'] = 0
+        request.session['bet'] = request.POST['bet']
         if difficulty == "easy":
             request.session['life'] = 3
-            request.session['difficulty'] = 'easy'
+            request.session['gain'] = float(request.POST['bet']) * 1.5
         elif difficulty == "medium":
             request.session['life'] = 2
-            request.session['difficulty'] = 'medium'
+            request.session['gain'] = float(request.POST['bet']) * 2.0
         elif difficulty == "hard":
             request.session['life'] = 1
-            request.session['difficulty'] = 'hard'
+            request.session['gain'] = float(request.POST['bet']) * 2.5
         return redirect('adventure')
-    return render(request, 'startAdventure.html')
+    return render(request, 'startAdventure.html', {'wallet': wallet})
 
 @login_required
 def adventure(request):
     userSkills = Skill.objects.get(user=request.user)
-    if request.method == "POST":
-        return render(request, 'startAdventure.html', {'life': request.session['life']})
-    return render(request, 'adventure.html', {'life': request.session['life'], 'difficulty': request.session['difficulty'], 'userSkills': userSkills})
+    print(userSkills.strength)
+    return render(request, 'adventure.html', {'life': range(request.session['life']), 'difficulty': request.session['difficulty'], 'userSkills': userSkills})
+
+@login_required
+def endAdventure(request):
+    win = request.session['life'] > 0
+
+    result = DiceRoll(
+        user=request.user,
+        skill="adventure",
+        dice_roll=-1,
+        win=win
+    )
+    result.save()
+
+    wallet = Wallet.objects.get(user=request.user)
+    if(win):
+        wallet.gold += request.session['gain']
+        wallet.save()
+    else:
+        wallet.gold -= request.session['bet']
+        wallet.save()
+
+    return render(request, 'endAdventure.html', {'win': win, 'gain': request.session['gain'], 'bet': request.session['bet'], 'wallet': wallet})

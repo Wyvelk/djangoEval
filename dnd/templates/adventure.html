@@ -9,9 +9,30 @@ Adventure
 
 
 <div class="card adventure">
-    <p id="textAventure">Un ennemi surgit</p>
 
+    <div class="skills">
+        <h2>Compétences</h2>
+        <ul>
+            <li><strong>Force</strong>: {{ userSkills.strength }}</li>
+            <li><strong>Dextérité</strong>: {{ userSkills.dexterity }}</li>
+            <li><strong>Constitution</strong>: {{ userSkills.constitution }}</li>
+            <li><strong>Intelligence</strong>: {{ userSkills.intelligence }}</li>
+            <li><strong>Sagesse</strong>: {{ userSkills.wisdom }}</li>
+            <li><strong>Charisme</strong>: {{ userSkills.charisma }}</li>
+        </ul>
+    </div>
+
+    <ul id="life">
+        {% for i in life %}
+        <li>&hearts;</li>
+        {% endfor %}
+    </ul>
+
+    <p id="round">Manche 1</p>
+
+    
     <p id="skill"></p>
+    <p id="textAventure"></p>
     <p id="target"></p>
     <p id="dice_roll"></p>
     <div id="result">Vous avez tiré un : <div id="resultDice"></div> <div id="modificateur"></div> <div id="finalResult"></div></div>
@@ -21,7 +42,7 @@ Adventure
 
     <button id="suivant" style="display: none;">Suivant</button>
 
-    <a href="#" id="terminer" style="display: none;">Terminer</a>
+    <a href="{% url 'endAdventure' %}" id="terminer" style="display: none;">Terminer</a>
 </div>
 
 {% endblock %}
@@ -31,6 +52,51 @@ Adventure
     from browser import document, window, ajax, console, bind
 
     skills = ["sagesse", "force", "dexterite", "charisme", "intelligence", "constitution"]
+
+    sentences = {
+        "wisdom": [
+            "Vous rencontrez un sage qui vous pose une énigme.",
+            "Vous trouvez un ancien texte qui nécessite une interprétation prudente.",
+            "Vous devez naviguer dans un labyrinthe complexe.",
+            "Vous rencontrez un esprit qui vous demande de juger son conflit.",
+            "Vous devez déchiffrer le vrai du faux dans une rumeur de village."
+        ],
+        "strength": [
+            "Un rocher énorme bloque votre chemin.",
+            "Vous êtes attaqué par une bête sauvage.",
+            "Vous devez ouvrir une porte lourde et rouillée.",
+            "Un pont s'effondre et vous devez sauter par-dessus un gouffre.",
+            "Vous devez déplacer une armoire pour découvrir un passage secret."
+        ],
+        "dexterity": [
+            "Vous devez traverser un champ de pièges.",
+            "Une flèche est tirée vers vous, esquivez-la !",
+            "Vous devez grimper un mur glissant.",
+            "Vous devez désamorcer un piège avant qu'il n'explose.",
+            "Vous devez vous faufiler sans être vu par les gardes."
+        ],
+        "charisma": [
+            "Vous devez convaincre le garde de vous laisser passer.",
+            "Vous rencontrez un marchand, négociez pour obtenir un meilleur prix.",
+            "Vous devez calmer une foule en colère.",
+            "Vous devez inspirer vos alliés avant la bataille.",
+            "Vous devez gagner la confiance d'un animal sauvage."
+        ],
+        "intelligence": [
+            "Vous trouvez un puzzle complexe à résoudre.",
+            "Vous devez déchiffrer un code secret.",
+            "Vous devez identifier une potion parmi plusieurs.",
+            "Vous devez trouver le chemin le plus rapide à travers une carte.",
+            "Vous devez comprendre le fonctionnement d'une machine ancienne."
+        ],
+        "constitution": [
+            "Vous devez résister à un poison.",
+            "Vous traversez un désert aride sans eau.",
+            "Vous devez nager contre un courant fort.",
+            "Vous devez résister à la tentation d'une illusion magique.",
+            "Vous marchez toute la journée sans repos."
+        ]
+    }
 
     def sleep(sec):
         def _sleep(resolve, reject):
@@ -54,6 +120,7 @@ Adventure
         def stop_changing_skill():
             window.clearInterval(interval_id[0])
             document["skill"].text = f"Compétence testée : {result['skill']}"
+            document["textAventure"].text = sentences[result['skill']][window.Math.floor(window.Math.random() * len(sentences[result['skill']]))]
             interval_id[0] = window.setInterval(change_dice_roll, 100)
             sleep(3).then(lambda _: stop_changing_dice_roll())
             print(result['skill'])
@@ -92,6 +159,8 @@ Adventure
             if(result['end'] == True):
                 document["terminer"].style.display = "block"
                 document["suivant"].style.display = "none"
+            if(result['win'] == False):
+                document["life"].firstElementChild.remove()
 
         interval_id = [None]
         interval_id[0] = window.setInterval(change_dice, 100)
@@ -110,6 +179,8 @@ Adventure
         document["modificateur"].text = ""
         document["finalResult"].text = ""
         document["winlose"].text = ""
+        document["round"].text = f"Manche {int(document['round'].text.split(' ')[1]) + 1}"
+        document["dice"].style.display = "block"
 
         display_info()
 

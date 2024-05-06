@@ -1,0 +1,18 @@
+{% extends "master.html" %}
+
+{% block title %}
+Fin de l'aventure
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Fin de l'aventure</h2>
+    {% if win %}
+        <p>Vous avez gagné {{gain}} gold</p>
+    {% else %}
+        <p>Vous avez perdu {{bet}} gold</p>
+    {% endif %}
+    <a href="{% url 'startAdventure' %}">Recommencer</a>
+</div>
+
+{% endblock %}

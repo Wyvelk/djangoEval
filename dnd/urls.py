@@ -10,5 +10,6 @@ urlpatterns = [
     path('ranking/', views.ranking, name='ranking'),
     path('logout/', views.Logout, name='custom_logout'),
     path('startAdventure/', views.startAdventure, name='startAdventure'),
-    path('adventure/', views.adventure, name='adventure')
+    path('adventure/', views.adventure, name='adventure'),
+    path('endAdventure/', views.endAdventure, name='endAdventure')
 ]
