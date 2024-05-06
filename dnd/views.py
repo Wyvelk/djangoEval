@@ -111,7 +111,7 @@ def startAdventure(request):
 def adventure(request):
     userSkills = Skill.objects.get(user=request.user)
     print(userSkills.strength)
-    return render(request, 'adventure.html', {'life': range(request.session['life']), 'difficulty': request.session['difficulty'], 'userSkills': userSkills})
+    return render(request, 'adventure.html', {'life': range(request.session['life']), 'userSkills': userSkills})
 
 @login_required
 def endAdventure(request):
