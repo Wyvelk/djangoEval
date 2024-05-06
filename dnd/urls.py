@@ -11,5 +11,6 @@ urlpatterns = [
     path('logout/', views.Logout, name='custom_logout'),
     path('startAdventure/', views.startAdventure, name='startAdventure'),
     path('adventure/', views.adventure, name='adventure'),
-    path('endAdventure/', views.endAdventure, name='endAdventure')
+    path('endAdventure/', views.endAdventure, name='endAdventure'),
+    path('rules/', views.rules, name='rules')
 ]

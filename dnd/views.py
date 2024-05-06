@@ -13,6 +13,9 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, 'home.html', {'user': request.user})
 
+def rules(request):
+    return render(request, 'rules.html')
+
 def authView(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)

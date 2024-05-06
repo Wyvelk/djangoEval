@@ -1,0 +1,37 @@
+<!-- login.html -->
+{% extends "master.html" %}
+
+{% block title %}
+Rules
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div>
+        <h2>Les règles</h2>
+    </div>
+    <h2>Lancer de dé :</h2>
+    <ul>
+        <li>Lors d'un lancer de dé, un joueur lance un dé à 20 faces.</li>
+        <li>Le dé détermine aléatoirement la compétence jugée.</li>
+        <li>Le but est que le modificateur de compétence du joueur ajouté au chiffre du dé lancé soit supérieur à dix
+            pour
+            réussir l'action.</li>
+        <li>Cette mécanique est similaire à celle utilisée dans le jeu de rôle Donjons et Dragons.</li>
+    </ul>
+
+    <h2>Partir à l'aventure :</h2>
+    <ul>
+        <li>Le joueur mise une partie de sa monnaie du jeu (pièces d'or) pour participer à une aventure.</li>
+        <li>Le joueur choisit également une difficulté pour l'aventure.</li>
+        <li>Le joueur lance une série de dés pour résoudre les différentes étapes de l'aventure.</li>
+        <li>L'objectif est de survivre à l'aventure en réussissant les actions nécessaires.</li>
+        <li>La difficulté choisie par le joueur détermine le multiplicateur appliqué à sa mise en cas de victoire.</li>
+        <li>Le déroulement de cette aventure est similaire à une partie de Donjons et Dragons, où les dés sont utilisés
+            pour
+            résoudre les actions et les événements.</li>
+    </ul>
+</div>
+
+{% endblock %}
