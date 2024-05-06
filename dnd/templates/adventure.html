@@ -11,15 +11,30 @@ Adventure
 <div class="card adventure">
 
     <div class="skills">
-        <h2>Compétences</h2>
-        <ul>
-            <li><strong>Force</strong>: {{ userSkills.strength }}</li>
-            <li><strong>Dextérité</strong>: {{ userSkills.dexterity }}</li>
-            <li><strong>Constitution</strong>: {{ userSkills.constitution }}</li>
-            <li><strong>Intelligence</strong>: {{ userSkills.intelligence }}</li>
-            <li><strong>Sagesse</strong>: {{ userSkills.wisdom }}</li>
-            <li><strong>Charisme</strong>: {{ userSkills.charisma }}</li>
-        </ul>
+        <div class="skill">
+            <span class="skill-name">F</span>
+            <span class="skill-value">{{ userSkills.strength }}</span>
+        </div>
+        <div class="skill">
+            <span class="skill-name">D</span>
+            <span class="skill-value">{{ userSkills.dexterity }}</span>
+        </div>
+        <div class="skill">
+            <span class="skill-name">C</span>
+            <span class="skill-value">{{ userSkills.constitution }}</span>
+        </div>
+        <div class="skill">
+            <span class="skill-name">I</span>
+            <span class="skill-value">{{ userSkills.intelligence }}</span>
+        </div>
+        <div class="skill">
+            <span class="skill-name">S</span>
+            <span class="skill-value">{{ userSkills.wisdom }}</span>
+        </div>
+        <div class="skill">
+            <span class="skill-name">Ch</span>
+            <span class="skill-value">{{ userSkills.charisma }}</span>
+        </div>
     </div>
 
     <ul id="life">
@@ -38,11 +53,11 @@ Adventure
     <div id="result">Vous avez tiré un : <div id="resultDice"></div> <div id="modificateur"></div> <div id="finalResult"></div></div>
     <p id="winlose"></p>
 
-    <button id="dice">Lancer le dé</button>
+    <button class="submit-btn" id="dice">Lancer le dé</button>
 
-    <button id="suivant" style="display: none;">Suivant</button>
+    <button class="submit-btn" id="suivant" style="display: none;">Suivant</button>
 
-    <a href="{% url 'endAdventure' %}" id="terminer" style="display: none;">Terminer</a>
+    <a href="{% url 'endAdventure' %}" class="submit-btn" id="terminer" style="display: none;">Terminer</a>
 </div>
 
 {% endblock %}
