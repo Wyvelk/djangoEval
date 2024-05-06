@@ -38,7 +38,7 @@ Home
         <a href="#" class="btn">Classement</a>
     </div>
 
-
+    {% if user.is_authenticated == False %}
     <div>
         <h2>Rejoignez l'Aventure Aujourd'hui !</h2>
         <p>Prêt à embarquer dans votre prochaine aventure de jeu ? Inscrivez-vous maintenant et rejoignez l'excitation
@@ -46,7 +46,7 @@ Home
 
         <a href="#" class="btn">S'inscrire</a>
     </div>
-
+    {% endif %}
 
 </div>
 
