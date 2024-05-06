@@ -6,46 +6,51 @@ Signup
 {% endblock %}
 
 {% block content %}
-<form method="POST" class="signup-form">
-    {% csrf_token %}
-    {{form}}
-    <div class="ability-scores">
-        <p>Nombre de points restants : <span id="pointRestant">27</span></p>
-        <div class="row">
-            <div class="ability-score">
-                <label for="strength">Strength</label>
-                <input type="number" name="strength" id="strength" min="0" max="20" value="8" required
-                    class="ability-input">
-            </div>
-            <div class="ability-score">
-                <label for="dexterity">Dexterity</label>
-                <input type="number" name="dexterity" id="dexterity" min="0" max="20" value="8" required
-                    class="ability-input">
-            </div>
-            <div class="ability-score">
-                <label for="constitution">Constitution</label>
-                <input type="number" name="constitution" id="constitution" min="0" max="20" value="8" required
-                    class="ability-input">
-            </div>
-        </div>
-        <div class="row">
-            <div class="ability-score">
-                <label for="intelligence">Intelligence</label>
-                <input type="number" name="intelligence" id="intelligence" min="0" max="20" value="8" required
-                    class="ability-input">
-            </div>
-            <div class="ability-score">
-                <label for="wisdom">Wisdom</label>
-                <input type="number" name="wisdom" id="wisdom" min="0" max="20" value="8" required
-                    class="ability-input">
-            </div>
-            <div class="ability-score">
-                <label for="charisma">Charisma</label>
-                <input type="number" name="charisma" id="charisma" min="0" max="20" value="8" required
-                    class="ability-input">
-            </div>
-        </div>
+<form method="POST" class="signup-form card">
+    <div>
+        <h2>Créer un compte</h2>
     </div>
-    <button type="submit" class="submit-btn">Submit</button>
+    <div>
+        {% csrf_token %}
+        {{form}}
+        <div class="ability-scores">
+            <p>Nombre de points restants : <span id="pointRestant">27</span></p>
+            <div class="row">
+                <div class="ability-score">
+                    <label for="strength">Strength</label>
+                    <input type="number" name="strength" id="strength" min="0" max="20" value="8" required
+                        class="ability-input">
+                </div>
+                <div class="ability-score">
+                    <label for="dexterity">Dexterity</label>
+                    <input type="number" name="dexterity" id="dexterity" min="0" max="20" value="8" required
+                        class="ability-input">
+                </div>
+                <div class="ability-score">
+                    <label for="constitution">Constitution</label>
+                    <input type="number" name="constitution" id="constitution" min="0" max="20" value="8" required
+                        class="ability-input">
+                </div>
+            </div>
+            <div class="row">
+                <div class="ability-score">
+                    <label for="intelligence">Intelligence</label>
+                    <input type="number" name="intelligence" id="intelligence" min="0" max="20" value="8" required
+                        class="ability-input">
+                </div>
+                <div class="ability-score">
+                    <label for="wisdom">Wisdom</label>
+                    <input type="number" name="wisdom" id="wisdom" min="0" max="20" value="8" required
+                        class="ability-input">
+                </div>
+                <div class="ability-score">
+                    <label for="charisma">Charisma</label>
+                    <input type="number" name="charisma" id="charisma" min="0" max="20" value="8" required
+                        class="ability-input">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </div>
 </form>
 {% endblock %}

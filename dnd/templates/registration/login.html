@@ -6,9 +6,15 @@ Login
 {% endblock %}
 
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit" class="submit-btn">Submit</button>
+
+<form class="card" method="POST">
+    <div>
+        <h2>Connexion</h2>
+    </div>
+    <div>
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="submit-btn">Submit</button>
+    </div>
 </form>
 {% endblock %}
